@@ -4,9 +4,9 @@
       <title>Brice Crispy's portfolio</title>
       <style>
         body {
-            background: rgb(125, 198, 205);
-            color: rgb(45, 45, 45);
-            padding: 10px;
+            background: content-box radial-gradient(crimson, black);
+            color: rgb(204, 82, 0); 
+            padding: 100px;
             font-family: arial;
         }
         #all-contents {
@@ -16,8 +16,9 @@
     
         /* navigation menu */
         nav {
-            background: rgb(239, 80, 41);
+            background: rgb(243, 101, 45);
             margin: 0 auto;
+            margin-bottom: 20px;
             display: flex;
             padding: 10px;
         }
@@ -36,8 +37,10 @@
             padding: 0 10px;
         }
         a {
+          
             text-decoration: none;
-            color: rgb(25, 0, 255);
+            color: rgb(15, 1, 146);
+            
         }
     
         /* main container area beneath menu */
@@ -51,6 +54,8 @@
         }
         .sidebar-img {
             width: 200px;
+            border: 3px solid rgb(90, 1, 1);
+  border-radius: 55px;
         }
         .content {
             flex: 1;
@@ -63,48 +68,55 @@
         h2, h3 {
             margin: 0px;
         }
-    </style>
+        #all-contents {
+        max-width: 800px;
+        margin: auto;
+        }
+
+      </style>
     </head>
     
     <body>
       <!--content goes here -->
-      <div> 
+     
+      <div id="all-contents"> 
+        
         <nav>
             <H1>Brice Crispy's portfolio</H1>
-            <ul>
-              <li>
+            <ul id="nav-ul">
+              
+              <li class="nav-li">
                 <a href= "index.html"> Homeskii </a>
               </li>
-              <li>
+              <li class="nav-li">
                <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ"> Portfolio </a>
-              </li>
+              </li >
+               
             </ul>
         </nav>
 
           <main>
             <!-- Sidebar section -->
-             <div>
-               <img height="300" width="250" src="images/pp.jpg">
+             <div class= sidebar >
+              
+               <img class= sidebar-img  src="images/pp.jpg">
+                <!-- Content Section -->
+                <div class= "content">
                 <h2> Brice Crispy</h2>
                   <p> Professional rice crispy enjoyer, and reluctant student at <a href= http://northshorehigh.stpsb.org/>Northshore Highschool</a></p>
-          
+                </div>
                   <!-- intrest section-->
-                     <div>
+                     <div id= "interests" >
                      <h3> Some crispy intrests</h3>
                      <ul>
-                         <li> Joe Mama </li>
+                         <li> <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ"> Rick Astley </a>  </li>
                          <li> Not school </li>
-                        <li> Ice Cream </li>
+                        <li> <a href= https://en.wikipedia.org/wiki/Ice_cream> Ice cream </a>  </li>
+                        <li> <a href=https://www.spotify.com> spotify   </li>
                       </ul>
                     </div>
 
-              </div>
-
-                <!-- Content section -->
-               <div>
-      
-               </div>
-
+             </div>
           </main>
       </div>
     </body>
