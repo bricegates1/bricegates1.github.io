@@ -4,12 +4,10 @@
       <title>Brice Crispy's portfolio</title>
       <style>
         body {
-            background: content-box radial-gradient(crimson, black);
-            border-radius: 55;
-            color: rgb(204, 82, 0); 
+            background: content-box radial-gradient( midnightblue, black);
+            color: rgb(204, 82, 0);
             padding: 100px;
             font-family: arial;
-            
         }
         #all-contents {
             max-width: 800px;
@@ -47,22 +45,34 @@
     
         /* main container area beneath menu */
         main {
-            background: rgb(255, 208, 108);
-            display: flex;
+            background-color:rgb(255, 197, 131)
+            display flex;
+        }
+        h4{
+            color:lightseagreen
         }
         
+
         .sidebar {
             margin-right: 25px;
             padding: 10px;
         }
         .sidebar-img {
             width: 200px;
-            border: 3px solid rgb(7, 1, 90);
-  border-radius: 55px;
+            border: 3px solid rgb(35, 1, 90);
+            border-radius: 55px;
         }
         .content {
             flex: 1;
             padding: 15px;
+            background-color:rgb(255, 197, 131)
+        }
+        
+        div{
+            padding-top: 20px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 0;
         }
         #interests {
             border: 4px silver ridge;
@@ -75,17 +85,45 @@
         max-width: 800px;
         margin: auto;
         }
-
+        #title1{
+            color:rgb(92, 0, 0)
+        }
+          /* portfolio styles */
+          .content h1 {
+                color: black;
+            }
+            
+            #portfolio {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            
+            #portfolio li {
+                background: rgb(255, 137, 137);
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+            
+            #portfolio li:hover {
+                background: rgb(204, 118, 61);
+            } 
+            
+            #portfolio a {
+                text-decoration: none;
+                color: #141414;
+            }
       </style>
     </head>
     
     <body>
+       
       <!--content goes here -->
      
       <div id="all-contents"> 
         
         <nav>
-            <h1>Brice Crispy's portfolio</h1>
+            <H1>Brice Crispy's portfolio</H1>
             <ul id="nav-ul">
               
               <li class="nav-li">
@@ -93,34 +131,23 @@
               </li>
               <li class="nav-li">
                <a href= "portfolio.html"> Portfolio </a>
-              </li>
+              </li >
                
             </ul>
         </nav>
 
           <main>
-            <!-- Sidebar section -->
-             <div class= sidebar >
               
-               <img class= sidebar-img  src="images/pp.jpg">
-
+              <div class= "content">
+                  <h4 id = "title1">Da Portfolio</h4>
+               <ul id= "portfolio">
+                    <li><a href="projects/platformer/">Platformer </a></li>
+                    <li><a href="projects/bouncing-box/">Bouncing Box </a></li>
+                    <li><a href="projects/circularity/">Circularity</a></li>
+               </ul> 
               </div>
-                <!-- Content Section -->
-                <div class= "content">
-                  <h2> Brice Crispy</h2>
-                    <p> Professional rice crispy enjoyer, and reluctant student at <a href= "http://northshorehigh.stpsb.org/">Northshore Highschool</a></p>
-                  
-                    <!-- intrest section-->
-                      <div id= "interests" >
-                          <h3> Some crispy intrests</h3>
-                          <ul>
-                              <li> <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ"> Rick Astley </a>  </li>
-                              <li> Not school </li>
-                              <li> <a href= https://en.wikipedia.org/wiki/Ice_cream> Ice cream </a>  </li>
-                              <li> <a href=https://www.spotify.com> spotify   </li>
-                            </ul>
-                      </div>
-                </div>
+            
+            
           </main>
       </div>
     </body>
