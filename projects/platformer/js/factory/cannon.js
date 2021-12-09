@@ -62,8 +62,8 @@
             } else if (type === "topLeft") {
                 x = 30, y = 30;
                 angle = 145;
-               tweenTo.x = game.world.width;
-               tweenTo.y = game.world.width;
+               tweenTo.x = 720;
+               tweenTo.y = 750;
             } else if (type === "right") {
                 x = game.world.width - 42, y = position;
                 angle = -90;
