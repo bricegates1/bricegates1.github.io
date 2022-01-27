@@ -18,6 +18,7 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url(images/hog\ rider.jpg);
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -64,31 +65,31 @@
 			// TODO 2 - Variable declarations \
 			var points = 0;
 			var speed = 10;
-			var speedY = speed;
+			var speedY = 10;
 			var randNum = Math.random() * boardWidth;
 			var randNumY = Math.random() * boardHeight;
-			var PositionY = randNumY;
-			var PositionX = randNum;
+			var positionY = randNumY;
+			var positionX = randNum;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				PositionX = PositionX + speed;
-				moveBoxTo(PositionX, PositionY);
-				if (PositionX >= boardWidth){
+				positionX = positionX + speed;
+				moveBoxTo(positionX, positionY);
+				if (positionX >= boardWidth){
 					speed = -speed;
 				}
-				else if(PositionX <= 0){
+				else if(positionX <= 0){
 					speed = speed *-1;
 				}
-				PositionY = PositionY + speedY;
+				positionY = positionY + speedY;
 				
-				if (PositionY >= boardHeight) {
+				if (positionY >= boardHeight) {
 					speedY = -speedY;
 				}
-				else if (PositionY <= 0) {
+				else if (positionY <= 0) {
 					speedY = -speedY;
 				}
 			};
@@ -99,8 +100,8 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				PositionX = randNum;
-				PositionY = randNumY;
+				positionX = randNum;
+				positionY = randNumY;
 				points = points +1;
 				changeBoxText(points);
 				if (speed >= 0) {
@@ -109,7 +110,12 @@
 				else if (speed <= 0) {
 					speed = speed -3;
 				}
-				
+				if (speedY >= 0) {
+					speed = speed + 3;
+				}
+				else if (speedY <= 0) {
+					speed = speed -3;
+				}
 			};
 
 		})();
