@@ -25,6 +25,7 @@ var init = function (window) {
         var circles = [];
 
         // TODO 2 : Create a function that draws a circle 
+        //randomizes the starting position, volocity, and... adds a child???
         function drawCircle () {
 
             circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
@@ -36,6 +37,7 @@ var init = function (window) {
 
         // TODO 3 / 8 : Call the drawCircle() function 
         drawCircle();
+        //draws them circles in however many times i tell it too
         for (var i = 0; i <= 1000; i++) {
             drawCircle(i);
             
@@ -52,9 +54,19 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
+             // physikz.updatePosition(circles[0])
+            // physikz.updatePosition(circles[1])
+            //physikz.updatePosition(circles[2])
+            //physikz.updatePosition(circles[3])
+            //physikz.updatePosition(circles[4])
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            
+            //game.checkCirclePosition(circles[0])
+           // game.checkCirclePosition(circles[1])
+           // game.checkCirclePosition(circles[2])
+            //game.checkCirclePosition(circles[3])
+           // game.checkCirclePosition(circles[4])
             // TODO 9 : Iterate over the array
+            //keeps them pesky circles position in check and checks them physics 
            for (var k = 0; k <= circles.length-1; k++) {
            physikz.updatePosition(circles[k]);
            game.checkCirclePosition(circles[k]);}
@@ -71,13 +83,22 @@ var init = function (window) {
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
             }
-            
+            //if the circle goes past the left siide of the screen it will be placed on the right 
+            else if (circle.x < 0) {
+                circle.x = canvas.width;
+                //if  the circle goes past the bottem of the screen then it will be placed on the top
+            }
+            else if (circle.y > canvas.height) {
+                circle.y = 0;
+            }
+            // if hte circle goes past the top of the screen it will be placed at the bottem
+            else if (circle.y < 0) {
+                circle.y = canvas.height;
+            }
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            
-
-
+           
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
-        }
+        }   
         
         /////////////////////////////////////////////////////////////
         // --- NO CODE BELOW HERE  --- DO NOT REMOVE THIS CODE --- //
