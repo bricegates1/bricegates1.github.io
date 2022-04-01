@@ -16,18 +16,19 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY -50 },
-                { "type": "sawblade", "x": 600, "y": groundY - 50},
-                { "type": "sawblade", "x": 900, "y": groundY - 50 },
+                { "type": "spike", "x": 400, "y": groundY -20 },
+                { "type": "spike", "x": 600, "y": groundY - 20},
+                { "type": "spike", "x": 900, "y": groundY - 20 },
 
-                { "type": "enemy", "x": 1000, "y": groundY  - 50 },
+                { "type": "enemy", "x": 1000, "y": groundY  - 20 },
                 { "type": "enemy", "x": 700, "y": groundY - 50},
-                { "type": "enemy", "x": 1500, "y": groundY - 50},
+                { "type": "enemy", "x": 1500, "y": groundY - 20},
                 
-                { "type": "reward", "x": 1500, "y": groundY - 50},
-                { "type": "reward", "x": 1500, "y": groundY - 50},
-                { "type": "reward", "x": 1500, "y": groundY - 50}
-
+                { "type": "reward", "x": 2000, "y": groundY - 20},
+                { "type": "reward", "x": 2400, "y": groundY - 20},
+                { "type": "reward", "x": 2600, "y": groundY - 20},
+                
+                {"type": "dynamite", "x": 1600, "y": groundY - 10}
             ]
         };
 
@@ -38,30 +39,32 @@ var level01 = function (window) {
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
         function createSawblade ( x, y) { 
-        var hitZoneSize = 25; //sets the size of the hitzone 25 pixles
+        var hitZoneSize = 15; //sets the size of the hitzone 25 pixles
 var damageFromObstacle = 10; // damage from the obsticals 
 var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates hitzone 
         
         sawBladeHitZone.x = x; //x position of the hitzone
         sawBladeHitZone.y = y; //y position of the hitzone 
         game.addGameItem(sawBladeHitZone); // adds the hitzone to the game
-        var obstacleImage = draw.bitmap('img/sawblade.png'); //drawing our sawblade drawing 
+        var obstacleImage = draw.bitmap('img/spike.png'); //drawing our sawblade drawing 
         sawBladeHitZone.addChild(obstacleImage); //adds the image to the hitzone
-        obstacleImage.x = -25; // moves the image's x position 25 to the left
-        obstacleImage.y= -25; // moves the obstical image 25 up to center it on the hitbox
-        }
+        obstacleImage.x = -15; // moves the image's x position 25 to the left
+        obstacleImage.y= -15; // moves the obstical image 25 up to center it on the hitbox
+        obstacleImage.scaleX = 2;
+        obstacleImage.scaleY = 2;
+        
+        };
            
         function createEnemy (x, y){
             var enemy = game.createGameItem('enemy',25); //creates the game item and stores it in variable enemy
-            var redSquare = draw.rect(50,50,'red'); //creates rectangle and stores as red square
-            redSquare.x = -25; 
-            redSquare.y = -25;
-            enemy.addChild(redSquare); //adds the red square to the enemy
-            enemy.x = 400;
-            enemy.y = groundY-50;
+            var enemyImage = draw.bitmap('img/soulEater.png');  //creates rectangle and stores as red square
+            enemyImage.x = -55; 
+            enemyImage.y = -55;
+            enemy.addChild(enemyImage); //adds the red square to the enemy
+            enemy.x = x;
+            enemy.y = y;
             game.addGameItem(enemy); //adds enemy to the game
             enemy.velocityX = -1; //moves the volocity one pixle to the left 
-            enemy.rotationalVelocity = 5;
             
             enemy.onPlayerCollision = function() {
                 console.log('The enemy has hit Halle');
@@ -82,8 +85,8 @@ var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // c
             blueSquare.x = -25; 
             blueSquare.y = -25;
             reward.addChild(blueSquare); //adds the blue square to the reward
-            reward.x = 400;
-            reward.y = groundY-50;
+            reward.x = x;
+            reward.y = y;
             game.addGameItem(reward); //adds reward to the game
             reward.velocityX = -1; //moves the volocity one pixle to the left 
             reward.rotationalVelocity = 5;
@@ -102,16 +105,35 @@ var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // c
             };
         }
         
+            function createMyObstacle(x,y) {
+                var hitZoneSize = 25; //sets the size of the hitzone 25 pixles
+                var damageFromObstacle = 10; // damage from the obsticals 
+                var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates hitzone 
+                        
+                        sawBladeHitZone.x = x; //x position of the hitzone
+                        sawBladeHitZone.y = y; //y position of the hitzone 
+                        game.addGameItem(sawBladeHitZone); // adds the hitzone to the game
+                        var obstacleImage = draw.bitmap('img/dynemite.png'); //drawing our sawblade drawing 
+                        sawBladeHitZone.addChild(obstacleImage); //adds the image to the hitzone
+                        obstacleImage.x = -50; // moves the image's x position 25 to the left
+                        obstacleImage.y= -40; // moves the obstical image 25 up to center it on the hitbox
+                
+                     
+        };          
+        
         for (var i = 0; i < levelData.gameItems.length; i++){
             var gameItem = levelData.gameItems[i];
-            if(gameItem.type === "sawblade"){
+            if(gameItem.type === "spike"){
                 createSawblade(gameItem.x, gameItem.y)
             }
             if(gameItem.type === "enemy"){
                 createEnemy(gameItem.x, gameItem.y)
             }
+            if(gameItem.type === "dynamite"){
+                createMyObstacle(gameItem.x, gameItem.y)
+            }
             if(gameItem.type === "reward"){
-                createEnemy(gameItem.x, gameItem.y)
+                createReward(gameItem.x, gameItem.y)
             }
         }
 
