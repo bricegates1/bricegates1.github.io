@@ -17,27 +17,40 @@ var level01 = function (window) {
             "speed": -3,
             "gameItems": [
                 { "type": "spike", "x": 400, "y": groundY -20 },
-                { "type": "spike", "x": 1400, "y": groundY - 20},
+                { "type": "spike", "x": 1400, "y": groundY - 20}, //places the spike into the world
                 { "type": "spike", "x": 1000, "y": groundY - 20 },
                 { "type": "spike", "x": 2000, "y": groundY - 20 },
 
 
                 { "type": "enemy", "x": 1000, "y": groundY  - 109 },
                 { "type": "enemy", "x": 700, "y": groundY - 20},
-                { "type": "enemy", "x": 1500, "y": groundY - 40},
+                { "type": "enemy", "x": 1500, "y": groundY - 40}, //places the enemy into the world
                 { "type": "enemy", "x": 2200, "y": groundY - 40},
                 { "type": "enemy", "x": 2800, "y": groundY - 40},
+                { "type": "enemy", "x": 3800, "y": groundY - 40},
+                { "type": "enemy", "x": 3900, "y": groundY - 40},
+                { "type": "enemy", "x": 4000, "y": groundY - 40},
+                { "type": "enemy", "x": 4100, "y": groundY - 40},
+                { "type": "enemy", "x": 4200, "y": groundY - 40},
+                { "type": "enemy", "x": 4300, "y": groundY - 40},
+                { "type": "enemy", "x": 4400, "y": groundY - 40},
+                { "type": "enemy", "x": 4500, "y": groundY - 40},
+                { "type": "enemy", "x": 4600, "y": groundY - 40},
+                { "type": "enemy", "x": 4700, "y": groundY - 40},
+
 
                 { "type": "reward", "x": 900, "y": groundY - 80},
-                { "type": "reward", "x": 1500, "y": groundY - 80},
+                { "type": "reward", "x": 1500, "y": groundY - 80}, //places award into world 
                 { "type": "reward", "x": 2600, "y": groundY - 80},
                 
                 {"type": "dynamite", "x": 1600, "y": groundY - 10},
-                {"type": "dynamite", "x": 2200, "y": groundY - 10},
+                {"type": "dynamite", "x": 2200, "y": groundY - 10}, //places dynamite into the world
                 {"type": "dynamite", "x": 2400, "y": groundY - 10},
 
-                {"type": "lavaPool", "x": 1800, "y": groundY},
-                {"type": "lavaPool", "x": 2800, "y": groundY}
+                {"type": "lavaPool", "x": 1800, "y": groundY}, //places lava pool into the world
+                {"type": "lavaPool", "x": 2800, "y": groundY},
+
+                {"type": "boss", "x": 2500, "y": groundY - 40}
 
                 
             ]
@@ -147,16 +160,33 @@ var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // c
                         obstacleImage.scaleX = 0.4;
                         obstacleImage.scaleY = 0.7;
         }
-        function createGuard(x,y){
-            var hitZoneSize = 25; //sets the size of the hitzone 25 pixles
+        function createEyeBoss(x,y){
+            var enemy = game.createGameItem('enemy',25); //creates the game item and stores it in variable enemy
+            var enemyImage = draw.bitmap('img/soulEater.png');  //creates rectangle and stores as red square
+            enemyImage.x = -130; 
+            enemyImage.y = -330;
+            enemyImage.scaleX = 3;
+            enemyImage.scaleY = 3;
+            enemy.addChild(enemyImage); //adds the red square to the enemy
+            enemy.x = x;
+            enemy.y = y;
+            game.addGameItem(enemy); //adds enemy to the game
+            enemy.velocityX = -1; //moves the volocity one pixle to the left 
             
-            var sawBladeHitZone = game.createObstacle(hitZoneSize); // creates hitzone 
-                    
-                    sawBladeHitZone.x = x; //x position of the hitzone
-                    sawBladeHitZone.y = y; //y position of the hitzone 
-                    game.addGameItem(sawBladeHitZone); // adds the hitzone to the game
-                   
-                    
+            enemy.onPlayerCollision = function() {
+                console.log('The enemy has hit Halle');
+                game.changeIntegrity(-1000)
+               
+                
+            };
+            enemy.onProjectileCollision = function() {
+                console.log('The enemy has hit Halle');
+                
+                enemy.fadeOut();
+                game.increaseScore(1000);
+                
+            };
+           
         }
         
         for (var i = 0; i < levelData.gameItems.length; i++){
@@ -176,8 +206,8 @@ var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // c
             if(gameItem.type === "lavaPool"){
                 createLavaPool(gameItem.x, gameItem.y)
             }
-            if(gameItem.type === "guard"){
-                createGuard(gameItem.x, gameItem.y)
+            if(gameItem.type === "boss"){
+                createEyeBoss(gameItem.x, gameItem.y)
             }
         }
 
